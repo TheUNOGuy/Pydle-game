@@ -12,6 +12,7 @@ from shutil import rmtree
 from ast import literal_eval
 from text_json import *
 from math import ceil
+from webbrowser import open as wbopen
 
 def get_kt_image ( letter, typ ):
     img = cv.imread ( ".\letter_tiles\kt\{}.png".format ( letter ) )
@@ -254,18 +255,31 @@ class panel ( ScrolledPanel ):
         self.stats = wx.BitmapButton ( self, -1, wx.Bitmap ( ".\images\statistics.bmp" ), style = wx.BORDER_NONE )
         self.Bind ( wx.EVT_BUTTON, self.statsframe, self.stats )
         self.stats.SetBackgroundColour ( "black" )
+        self.stats.SetToolTip ( "Show game statistics" )
         self.endsizer.Add ( self.stats, 0, wx.ALIGN_CENTER, 5 )
+        
         self.endsizer.AddSpacer ( 20 )
         self.help = wx.BitmapButton ( self, -1, wx.Bitmap ( ".\images\help.bmp" ), style = wx.BORDER_NONE )
         self.Bind ( wx.EVT_BUTTON, self.helpframe, self.help )
         self.help.SetBackgroundColour ( "black" )
+        self.help.SetToolTip ( "Show the help dialog" )
         self.endsizer.Add ( self.help, 0, wx.ALIGN_CENTER, 5 )
+        
+        self.endsizer.AddSpacer ( 15 )
+        self.issues = wx.BitmapButton ( self, -1, wx.Bitmap ( ".\images\issues.bmp" ), style = wx.BORDER_NONE )
+        self.Bind ( wx.EVT_BUTTON, self.issueopen, self.issues )
+        self.issues.SetBackgroundColour ( "black" )
+        self.issues.SetToolTip ( "Report an issue / Send feedback" )
+        self.endsizer.Add ( self.issues, 0, wx.ALIGN_CENTER, 5 )
         
         self.sizer.Add ( self.endsizer, 0, wx.ALIGN_CENTER, 5 )
         self.ekey.SetFocus()
         self.Bind ( wx.EVT_CHAR_HOOK, self.processChar )
         self.SetSizer ( self.sizer )
         self.Show()
+    
+    def issueopen ( self, event ):
+        wbopen ( "https://github.com/TheUNOGuy/Pydle-game/issues" )
     
     def helpframe ( self, event ):
         helps ( self )
