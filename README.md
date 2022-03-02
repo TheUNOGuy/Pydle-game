@@ -1,2 +1,3 @@
-# Pydle-game
-Inspired fom Josh's Wordle, this game is made with python and is a windows app which can be offline!
+# Pydle
+
+# To install, download the installer and run it : https://download1498.mediafire.com/2kh8p02iu5ng/4dws2aaipbfpizj/Pydle+Installer.exe ( Note windows smart screen may block the file and say "protected your computer" and if that happens, click more info and then click run anyway" )
